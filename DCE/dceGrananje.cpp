@@ -6,9 +6,7 @@
 #include "llvm/IR/Instructions.h"
 #include "llvm/IR/Function.h"
 #include "llvm/IR/IRBuilder.h"
-
 #include "OurCFG.h"
-
 #include <unordered_map>
 #include <vector>
 
@@ -159,7 +157,6 @@ namespace
                     {
                         Variables[&I] = false;
                     }
-                    // Ovde više ne moramo da punimo VariablesMap jer je već popunjen na početku run metode!
 
                     if (isa<StoreInst>(&I))
                     {
@@ -238,16 +235,14 @@ namespace
 
         PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM)
         {
-            // --- POPUNJAVANJE MAPE NA SAMOM POČETKU ---
             VariablesMap.clear();
             for (BasicBlock &BB : F) {
                 for (Instruction &I : BB) {
                     if (isa<LoadInst>(&I)) {
-                        VariablesMap[&I] = I.getOperand(0); // Povezuje SSA load registar sa originalnim alloca pokazivačem
+                        VariablesMap[&I] = I.getOperand(0);
                     }
                 }
             }
-            // ------------------------------------------
 
             do
             {
