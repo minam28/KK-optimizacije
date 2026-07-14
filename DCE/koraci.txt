@@ -1,0 +1,10 @@
+IZ C U LL
+
+            clang -S -emit-llvm -O0 -Xclang -disable-O0-optnone test.c -o test.ll
+
+
+clang++ -shared -fPIC -o OurDeadCodeElimination.so dceGrananje.cpp OurCFG.cpp `llvm-config --cxxflags --ldflags --libs`
+
+
+opt -load-pass-plugin=./OurDeadCodeElimination.so -passes="our-dce" -S test.ll -o opt_test.ll
+
