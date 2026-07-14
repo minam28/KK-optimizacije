@@ -17,10 +17,9 @@ namespace
     struct OurDeadCodeElimination : public PassInfoMixin<OurDeadCodeElimination>
     {
         std::unordered_map<Value *, bool> Variables;
-        
         std::unordered_map<Value *, Value *> VariablesMap;
-        
         std::vector<Instruction *> InstructionsToRemove;
+
         bool InstructionEliminated;
 
         void handleOperand(Value *Operand)
@@ -75,10 +74,8 @@ namespace
                         }
                     }
                 }
-
                 return false;
             }
-
             return true;
         }
 
