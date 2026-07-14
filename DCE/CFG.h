@@ -16,11 +16,9 @@ private:
   std::unordered_set<BasicBlock *> Visited;
   std::unordered_map<BasicBlock *, std::vector<BasicBlock *>> AdjacencyList;
   void CreateCFG(Function &);
-  void DumpBlockToFile(raw_fd_ostream &, BasicBlock *);
 
 public:
   OurCFG(Function &);
-  void DumpGraphToFile();
   void DFS(BasicBlock *);
   bool isReachable(BasicBlock *);
 };
