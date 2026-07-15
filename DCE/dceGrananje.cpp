@@ -66,13 +66,13 @@ namespace
                         continue; 
                     }
                     
-                    auto VarIt1 = VariablesMap.find(OpInst1);
+                   /* auto VarIt1 = VariablesMap.find(OpInst1);
                     auto VarIt2 = VariablesMap.find(OpInst2);
                     if (VarIt1 != VariablesMap.end() && VarIt2 != VariablesMap.end()) {
                         if (VarIt1->second == VarIt2->second) {
                             continue; 
                         }
-                    }
+                    }*/
                 }
                 return false;
             }
