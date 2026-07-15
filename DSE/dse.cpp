@@ -30,7 +30,6 @@ struct DSEPass : public PassInfoMixin<DSEPass> {
         }
         std::reverse(radnaLista.begin(), radnaLista.end());
 
-
         while (!radnaLista.empty()) { 
             BasicBlock *BB = radnaLista.back(); 
             radnaLista.pop_back();  
@@ -105,8 +104,8 @@ struct DSEPass : public PassInfoMixin<DSEPass> {
             }
 
             for (StoreInst *SI : zaBrisanje) {
-                SI->eraseFromParent(); //brisanje instrukcije
-                promena = true; //promena u kodu se desila
+                SI->eraseFromParent(); 
+                promena = true;
             }
         }
 
@@ -134,5 +133,5 @@ llvm::PassPluginLibraryInfo getDSEPluginInfo() {
 }
 
 extern "C" LLVM_ATTRIBUTE_WEAK ::llvm::PassPluginLibraryInfo llvmGetPassPluginInfo() {
-    return getDSEPluginInfo();  //ulazna tačka plugina koju LLVM učitava
+    return getDSEPluginInfo();
 }
